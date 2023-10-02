@@ -13,7 +13,8 @@ public class Vehiculo {
     String traccion;
     Fabricante fabricante;
     static int CantidadVehiculos;
-    public  ArrayList cantidadporPais;
+    static ArrayList<Pais> cantidadporPais = new ArrayList<>();
+    static ArrayList<Fabricante> cantidadporFabricante = new ArrayList<>();
     public Vehiculo(String placa,int puertas,int velocidadMaxima,String nombre,int precio,int peso,String traccion,Fabricante fabricante){
         CantidadVehiculos++;
         this.placa =placa;
@@ -25,9 +26,23 @@ public class Vehiculo {
         this.traccion =traccion;
         this.fabricante = fabricante;
         if (cantidadporPais.contains(fabricante.pais)){
-
+            fabricante.pais.vehiculosVendidos++;
+        }
+        else {
+            cantidadporPais.add(fabricante.pais);
+        }
+        if (cantidadporFabricante.contains(fabricante)){
+            fabricante.vehiculosVendidos++;
+        }
+        else {
+            cantidadporFabricante.add(fabricante);
         }
     }
+
+    public static void setCantidadVehiculos(int cantidadVehiculos) {
+        CantidadVehiculos = cantidadVehiculos;
+    }
+
     public String vehiculoPorTipo(){
     return "Automoviles: "+getCantidadVehiculos()+"/n"+"Camionetas: "+Camioneta.getCantidadCamionetas()+"/n"+"Camiones: "+Camion.getCantidadCamiones();
     }
@@ -67,4 +82,25 @@ public class Vehiculo {
     public static int getCantidadVehiculos() {
         return CantidadVehiculos;
     }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public void setPuertas(int puertas) {
+        this.puertas = puertas;
+    }
+
+    public void setVelocidadMaxima(int velocidadMaxima) {
+        this.velocidadMaxima = velocidadMaxima;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
 }
+
